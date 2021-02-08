@@ -22,8 +22,8 @@ public class RequestFilter implements HandlerInterceptor {
             token = request.getParameter("token");
         }
         String idNumber = request.getParameter("idNumber");
-        if (redisRepository.get("token:"+idNumber)!=null){
-            redisRepository.setExpire("token:"+idNumber,token,40);
+        if (redisRepository.get("token:"+token)!=null){
+            redisRepository.setExpire("token:"+token,token,1000);
             return true;
         }
         R r = new R();

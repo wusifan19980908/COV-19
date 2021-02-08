@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public R ErrorHandler(HttpServletResponse response, HttpServletRequest request, Exception e) throws Exception{
+        e.printStackTrace();
         if (e.getMessage()==null){
             return R.error("请联系管理员");
         }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cdu_2017.xuye.cov19.register.dao.UserInfoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="cdu_2017.xuye.cov19.register.model.UserInfo" id="userInfoMap">
+        <result property="idNumber" column="id_number"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="sex" column="sex"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="getUserInfoByIdNumber" parameterType="String" resultType="UserInfo">
+        select * from user_info where id_number = #{idNumber}
+    </select>
+
+    <select id="getProvinceByCode" parameterType="Integer" resultType="string">
+        select name from province where province_code = #{provinceCode}
+    </select>
+
+    <select id="getCityByCode" parameterType="Integer" resultType="string">
+        select name from city where city_code = #{cityCode}
+    </select>
+
+    <select id="getAreaByCode" parameterType="Integer" resultType="string">
+        select name from area where area_code = #{areaCode}
+    </select>
+
+    <select id="listCity" parameterType="integer" resultType="City">
+        select name,city_code from city where province_code = #{provinceCode}
+    </select>
+
+    <select id="listArea" parameterType="integer" resultType="Area">
+        select name,area_code from area where area_code = #{areaCode}
+    </select>
+
+    <select id="listProvince" resultType="Province">
+        select name,province_code from province
+    </select>
+</mapper>

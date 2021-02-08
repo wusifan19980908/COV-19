@@ -1,13 +1,12 @@
-package cdu_2017.xuye.cov19.register.service.impl;
+package cdu_2017.xuye.cov19.sys.service.impl;
 
-import cdu_2017.xuye.cov19.register.dao.UserDao;
-import cdu_2017.xuye.cov19.register.model.User;
-import cdu_2017.xuye.cov19.register.service.UserService;
+import cdu_2017.xuye.cov19.sys.dao.UserDao;
+import cdu_2017.xuye.cov19.sys.model.User;
+import cdu_2017.xuye.cov19.sys.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 

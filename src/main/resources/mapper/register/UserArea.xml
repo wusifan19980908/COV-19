@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cdu_2017.xuye.cov19.register.dao.UserAreaDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="cdu_2017.xuye.cov19.register.model.UserArea" id="userAreaMap">
+        <result property="idNumber" column="id_number"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="area" column="area"/>
+    </resultMap>
+    <select id="getUserAreaByIdNumber" parameterType="String" resultType="UserArea">
+        select * from user_area where id_number = #{idNumber}
+    </select>
+</mapper>

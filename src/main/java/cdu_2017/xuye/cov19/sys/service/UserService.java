@@ -1,6 +1,6 @@
-package cdu_2017.xuye.cov19.register.service;
+package cdu_2017.xuye.cov19.sys.service;
 
-import cdu_2017.xuye.cov19.register.model.User;
+import cdu_2017.xuye.cov19.sys.model.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;

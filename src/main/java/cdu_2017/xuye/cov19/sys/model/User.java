@@ -1,4 +1,4 @@
-package cdu_2017.xuye.cov19.register.model;
+package cdu_2017.xuye.cov19.sys.model;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
