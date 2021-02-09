@@ -95,13 +95,13 @@ public class QRCodeUtil {
      */
     public static void createCodeToOutputStream(Map<String,Object> map, OutputStream outputStream) {
         try {
-            if (map.get("msg") == null || "".equals(map.get("msg").toString().trim())) {
+            if (map.get("url") == null || "".equals(map.get("url").toString().trim())) {
                 log.info("二维码内容为空，不进行操作...");
                 return;
             }
-            String msg  = (String) map.get("msg");
+            String url  = (String) map.get("url");
             String color = (String) map.get("color");
-            BufferedImage bufferedImage = getBufferedImage(msg,color);
+            BufferedImage bufferedImage = getBufferedImage(url,color);
             /*
              * 区别就是以一句，输出到输出流中，如果第三个参数是 File，则输出到文件中
              */

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cdu_2017.xuye.cov19.register.dao.WayInfoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="cdu_2017.xuye.cov19.register.model.WayInfo" id="wayInfoMap">
+        <result property="wayId" column="way_id"/>
+        <result property="idNumber" column="id_number"/>
+        <result property="wayType" column="way_type"/>
+        <result property="code" column="code"/>
+    </resultMap>
+</mapper>

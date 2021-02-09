@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cdu_2017.xuye.cov19.register.dao.UserWayDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="cdu_2017.xuye.cov19.register.model.UserWay" id="userWayMap">
+        <result property="id" column="id"/>
+        <result property="idNumber" column="id_number"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="startArea" column="start_area"/>
+        <result property="endArea" column="end_area"/>
+        <collection property="wayInfos" ofType="WayInfo">
+            <result property="wayId" column="way_id"/>
+            <result property="wayType" column="way_type"/>
+            <result property="code" column="code"/>
+        </collection>
+    </resultMap>
+    <select id="getById" parameterType="integer" resultMap="userWayMap">
+        select
+        u.id,
+        u.id_number,
+               u.start_time,
+               u.end_time,
+               u.start_area,
+               u.end_area,
+               w.way_id,
+               w.way_type,
+               w.code
+        from user_way u
+        left join way_info w on u.id = w.way_id
+        where u.id = #{id}
+    </select>
+</mapper>

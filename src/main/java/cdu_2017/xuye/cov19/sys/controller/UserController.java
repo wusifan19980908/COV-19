@@ -30,6 +30,7 @@ public class UserController {
         }
             if (u.getPassword().equals(PasswordUtil.sha256(u.getSalt(), user.getPassword()))) {
                 String token = PasswordUtil.getToken(u.getPassword());
+                redisRepository.setExpire("number:"+token,u.getIdNumber(),1000);
                 redisRepository.setExpire("token:" +token, token, 1000);
 //                redisRepository.setExpire("password:"+token,u.getSalt(),1000);
                 return R.put(token);
