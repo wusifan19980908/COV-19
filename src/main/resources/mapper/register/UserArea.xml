@@ -9,8 +9,10 @@
         <result property="province" column="province"/>
         <result property="city" column="city"/>
         <result property="area" column="area"/>
+        <result property="community" column="community"/>
     </resultMap>
     <select id="getUserAreaByIdNumber" parameterType="String" resultType="UserArea">
         select * from user_area where id_number = #{idNumber}
     </select>
+
 </mapper>

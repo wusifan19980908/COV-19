@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @TableName("user_info")
 public class UserInfo {
@@ -32,14 +34,37 @@ public class UserInfo {
      */
     @TableField(exist = false)
     private Integer provinceCode;
+    @TableField(exist = false)
+    private String provinceName;
     /**
      * 城市
      */
     @TableField(exist = false)
     private Integer cityCode;
+    @TableField(exist = false)
+    private String cityName;
     /**
      * 区域
      */
     @TableField(exist = false)
     private Integer areaCode;
+    @TableField(exist = false)
+    private String areaName;
+    /**
+     * 社区
+     */
+    @TableField(exist = false)
+    private String community;
+    /**
+     * 危险触发时间
+     */
+    private Date dangerStart;
+    /**
+     * 危险接触时间
+     */
+    private Date dangerTime;
+    /**
+     * 安全截至时间
+     */
+    private Date securityTime;
 }

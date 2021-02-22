@@ -1,5 +1,6 @@
 package cdu_2017.xuye.cov19.register.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -14,11 +15,14 @@ import lombok.Data;
 @TableName("way_info")
 public class WayInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * id
+	 */
+	@TableId(type = IdType.AUTO)
+	private Integer id;
 	/**
 	 * 路线id
 	 */
-	@TableId
 	private Integer wayId;
 	/**
 	 * 身份证号

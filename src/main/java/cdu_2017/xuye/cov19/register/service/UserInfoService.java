@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 public interface UserInfoService extends IService<UserInfo> {
-    public boolean saveUserInfo(UserInfo userInfo);
+    public boolean saveOrUpdateUserInfo(UserInfo userInfo);
     public UserInfo info(String  idNumber);
     public boolean update(UserInfo userInfo);
 }

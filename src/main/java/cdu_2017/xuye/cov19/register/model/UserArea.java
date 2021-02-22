@@ -21,4 +21,8 @@ public class UserArea {
      * 地区
      */
     private Integer area;
+    /**
+     * 社区
+     */
+    private String community;
 }

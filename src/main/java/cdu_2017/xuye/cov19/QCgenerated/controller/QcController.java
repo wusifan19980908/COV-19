@@ -1,12 +1,18 @@
 package cdu_2017.xuye.cov19.QCgenerated.controller;
+import cdu_2017.xuye.cov19.common.model.R;
+import cdu_2017.xuye.cov19.register.model.UserInfo;
+import cdu_2017.xuye.cov19.register.service.UserInfoService;
+import cdu_2017.xuye.cov19.sys.model.User;
+import cdu_2017.xuye.cov19.sys.service.UserService;
 import cdu_2017.xuye.cov19.util.QRCodeUtil;
 import cdu_2017.xuye.cov19.util.RedisRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.javassist.bytecode.ByteArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.io.*;
 import java.util.Map;
 
 @Slf4j
@@ -15,19 +21,13 @@ import java.util.Map;
 public class QcController {
     @Autowired
     private RedisRepository redisRepository;
-    @PostMapping  ("qrCode")
-    public void getQRCode(@RequestParam Map<String,Object> map, HttpServletResponse response) {
-
-        System.out.println("codeContent=" + map.toString());
-        try {
-            /*
-             * 调用工具类生成二维码并输出到输出流中
-             */
-            map.put("color","0");
-            QRCodeUtil.createCodeToOutputStream(map, response.getOutputStream());
-            log.info("成功生成二维码!");
-        } catch (IOException e) {
-            log.error("发生错误， 错误信息是：{}！", e.getMessage());
-        }
+    @Autowired
+    private UserInfoService userInfoService;
+    @RequestMapping   ("qrCode")
+    public R getQRCode(@RequestParam Map<String,Object> map, HttpServletResponse response) throws IOException {
+       String token = (String) map.get("token");
+       String idNumber = (String) redisRepository.get("number:"+token);
+       UserInfo user = userInfoService.getById(idNumber);
+       return R.put(user.getStatus());
     }
 }

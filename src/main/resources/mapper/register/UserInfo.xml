@@ -10,6 +10,8 @@
         <result property="phone" column="phone"/>
         <result property="sex" column="sex"/>
         <result property="status" column="status"/>
+        <result property="securityTime" column="security_time"/>
+        <result property="dangerTime" column="danger_time"/>
     </resultMap>
 
     <select id="getUserInfoByIdNumber" parameterType="String" resultType="UserInfo">

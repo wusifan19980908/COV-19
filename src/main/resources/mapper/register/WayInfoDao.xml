@@ -5,9 +5,21 @@
 
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="cdu_2017.xuye.cov19.register.model.WayInfo" id="wayInfoMap">
+        <result property="id" column="id"/>
         <result property="wayId" column="way_id"/>
         <result property="idNumber" column="id_number"/>
         <result property="wayType" column="way_type"/>
         <result property="code" column="code"/>
     </resultMap>
+    <select id="checkWayInfo" parameterType="wayInfo" resultType="string">
+        select id_number from way_info
+        <where>
+            <if test="way_type!=null and way_type!=''">
+                #{wayType} = way_type
+            </if>
+            <if test="code != null and code !=''">
+               and  #{code} = code
+            </if>
+        </where>
+    </select>
 </mapper>

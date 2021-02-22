@@ -9,9 +9,15 @@
         <result property="idNumber" column="id_number"/>
         <result property="startTime" column="start_time"/>
         <result property="endTime" column="end_time"/>
+        <result property="startProvince" column="start_province"/>
+        <result property="startCity" column="start_City"/>
+        <result property="endProvince" column="end_province"/>
+        <result property="endCity" column="end_city"/>
         <result property="startArea" column="start_area"/>
         <result property="endArea" column="end_area"/>
+        <result property="flag" column="flag"/>
         <collection property="wayInfos" ofType="WayInfo">
+            <result property="id" column="wid"/>
             <result property="wayId" column="way_id"/>
             <result property="wayType" column="way_type"/>
             <result property="code" column="code"/>
@@ -23,8 +29,13 @@
         u.id_number,
                u.start_time,
                u.end_time,
+               u.start_province,
+               u.start_city,
                u.start_area,
+               u.end_province,
+               u.end_city,
                u.end_area,
+               w.id as wid,
                w.way_id,
                w.way_type,
                w.code
@@ -32,4 +43,59 @@
         left join way_info w on u.id = w.way_id
         where u.id = #{id}
     </select>
+    <select id="listByIdNumberList" parameterType="string" resultMap="userWayMap">
+        select
+            u.id,
+            u.id_number,
+            u.start_time,
+            u.end_time,
+            u.start_province,
+            u.start_city,
+            u.start_area,
+            u.end_province,
+            u.end_city,
+            u.end_area,
+            w.id as wid,
+            w.way_id,
+            w.way_type,
+            w.code
+        from user_way u
+        left join way_info w on u.id = w.way_id
+        where u.id_number = #{idNumber}
+    </select>
+    <select id="getProvinces" resultType="hashmap">
+        select province_code,name from province
+    </select>
+    <select id="getCities" resultType="hashmap" parameterType="integer">
+        select city_code,name from city
+        <where>
+            <if test="provinceCode!=null and provinceCode!=''">
+                province_code = #{provinceCode}
+            </if>
+        </where>
+    </select>
+    <select id="getAreas" resultType="hashmap" parameterType="integer">
+        select area_code,name from area
+        <where>
+            <if test="cityCode!=null and cityCode!=''">
+                city_code = #{cityCode}
+            </if>
+        </where>
+    </select>
+<!--    <select id="checkUserWay" parameterType="UserWay" resultMap="userWayMap">-->
+<!--        select u.id_number-->
+<!--        from user_way u-->
+<!--        left join way_info w on u.id = w.way_id-->
+<!--        <where>-->
+<!--            <if test="startTime!=null">-->
+<!--                 #{startTime} >= u.start_time  and u.end_time > #{startTime}-->
+<!--            </if>-->
+<!--            <if test="endTime!=null">-->
+<!--               or  ( #{endTime} >= u.start_time and u.end_time > #{endTime} )-->
+<!--            </if>-->
+<!--            <if test="startProvince!=null and endProvince!=null">-->
+<!--                and #{startProvince} = u.start_province and #{endProvince} = u.end_province-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
 </mapper>

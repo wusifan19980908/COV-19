@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -14,4 +16,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 @Mapper
 public interface UserWayDao extends BaseMapper<UserWay> {
 	UserWay getById(Integer id);
+	List<UserWay> listByIdNumberList(String idNumber);
+	List<Map<String,Object>> getProvinces();
+	List<Map<String,Object>> getCities(Integer provinceCode);
+	List<Map<String,Object>> getAreas(Integer cityCode);
 }

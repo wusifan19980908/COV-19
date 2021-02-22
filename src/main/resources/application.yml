@@ -1,6 +1,11 @@
 server:
   port: 80
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  mvc:
+    dispatch-options-request: true
+    static-path-pattern: /templates/*
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/cov-19?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -10,13 +15,13 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
-    timeout: 3000
+    timeout: 6000
     lettuce:
       pool:
-        max-idle: 0
+        max-idle: 5
         min-idle: 8
-        max-wait: -1
-        max-active: 8
+        max-wait: -5
+        max-active: 20
 mybatis-plus:
   typeAliasesPackage: cdu_2017.xuye.cov19.register.model
   mapper-location: classpath:mapper/register/*.xml

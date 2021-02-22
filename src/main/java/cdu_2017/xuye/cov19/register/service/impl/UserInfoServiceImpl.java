@@ -21,14 +21,14 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao,UserInfo> imple
      * 保存用户基本信息
      */
     @Override
-    public boolean saveUserInfo(UserInfo userInfo) {
+    public boolean saveOrUpdateUserInfo(UserInfo userInfo) {
         UserArea userArea = new UserArea();
         //存储用户地区信息
         userArea.setIdNumber(userInfo.getIdNumber());
         userArea.setProvince(userInfo.getProvinceCode());
         userArea.setCity(userInfo.getCityCode());
         userArea.setArea(userInfo.getAreaCode());
-        userAreaService.save(userArea);
+        userAreaService.saveOrUpdate(userArea);
         this.save(userInfo);
         return true;
     }
@@ -47,6 +47,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao,UserInfo> imple
         userInfo.setProvinceCode(userArea.getProvince());
         userInfo.setCityCode(userArea.getCity());
         userInfo.setAreaCode(userArea.getArea());
+        userInfo.setProvinceName(userInfoDao.getProvinceByCode(userInfo.getProvinceCode()));
+        userInfo.setCityName(userInfoDao.getCityByCode(userInfo.getCityCode()));
+        userInfo.setAreaName(userInfoDao.getAreaByCode(userInfo.getAreaCode()));
+        userInfo.setCommunity(userArea.getCommunity());
         return userInfo;
     }
 

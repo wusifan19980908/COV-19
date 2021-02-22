@@ -2,6 +2,7 @@ package cdu_2017.xuye.cov19.common.exception;
 
 import cdu_2017.xuye.cov19.common.model.R;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

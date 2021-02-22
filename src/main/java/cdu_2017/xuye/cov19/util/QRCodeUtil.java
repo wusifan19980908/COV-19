@@ -93,11 +93,11 @@ public class QRCodeUtil {
      * @param map  ：二维码内容
      * @param outputStream ：输出流，比如 HttpServletResponse 的 getOutputStream
      */
-    public static void createCodeToOutputStream(Map<String,Object> map, OutputStream outputStream) {
+    public static OutputStream createCodeToOutputStream(Map<String,Object> map, OutputStream outputStream) {
         try {
             if (map.get("url") == null || "".equals(map.get("url").toString().trim())) {
                 log.info("二维码内容为空，不进行操作...");
-                return;
+                return outputStream;
             }
             String url  = (String) map.get("url");
             String color = (String) map.get("color");
@@ -111,6 +111,7 @@ public class QRCodeUtil {
             e.printStackTrace();
             log.error("发生错误: {}!", e.getMessage());
         }
+        return outputStream;
     }
 
 
